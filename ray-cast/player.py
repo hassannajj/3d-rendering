@@ -1,22 +1,37 @@
 import pygame
+from constants import *
+
 
 class Player:
-    def __init__(self, x, y, radius, speed):
-        self.position = pygame.Vector2(x, y)
-        self.radius = radius
-        self.speed = speed
-        self.color = 'white'
+    def __init__(self):
+        self.position = pygame.Vector2(WIDTH/2, HEIGHT/2)
 
-    def update_pos(self, dt):
+    def get_next_pos(self, dt):
+        new_x = self.position.x
+        new_y = self.position.y
+
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
-            self.position.y -= self.speed * dt
+            new_y -= (SPEED * dt)
         if keys[pygame.K_s]:
-            self.position.y += self.speed * dt
+            new_y += (SPEED * dt)
         if keys[pygame.K_a]:
-            self.position.x -= self.speed * dt
+            new_x -= (SPEED * dt)
         if keys[pygame.K_d]:
-            self.position.x += self.speed * dt
+            new_x += (SPEED * dt)
+
+        print(new_x, new_y)
+        return new_x, new_y
+
+
+    def update_pos(self, pos):
+        self.position.x = pos[0]
+        self.position.y = pos[1]
+
 
     def draw(self, screen):
-        pygame.draw.circle(screen, self.color, (int(self.position.x), int(self.position.y)), self.radius)
+        pygame.draw.circle(screen, 
+                           PLAYER_COLOR, 
+                           (int(self.position.x), 
+                           int(self.position.y)), 
+                           RADIUS)
