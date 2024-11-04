@@ -6,3 +6,5 @@ BG_COLOR = "blue"
 RADIUS = 10
 SPEED = 200
 PLAYER_COLOR = "white"
+
+FOV = 90

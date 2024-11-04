@@ -3,8 +3,9 @@ from constants import *
 
 
 class Player:
-    def __init__(self):
-        self.position = pygame.Vector2(WIDTH/2, HEIGHT/2)
+    def __init__(self, start_pos):
+        self.position = pygame.Vector2(start_pos[0], start_pos[1])
+    
 
     def get_next_pos(self, dt):
         new_x = self.position.x
@@ -20,13 +21,15 @@ class Player:
         if keys[pygame.K_d]:
             new_x += (SPEED * dt)
 
-        print(new_x, new_y)
         return new_x, new_y
 
 
     def update_pos(self, pos):
         self.position.x = pos[0]
         self.position.y = pos[1]
+
+    def get_curr_pos(self):
+        return self.position
 
 
     def draw(self, screen):

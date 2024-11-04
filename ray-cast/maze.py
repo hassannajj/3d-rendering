@@ -23,4 +23,8 @@ class Maze:
             return self.grid[row][col] == 1
         return True  # Outside bounds are considered walls
 
-
+    def get_first_0(self):
+        for i in range(self.rows):
+            for j in range(self.cols):
+                if self.grid[i][j] == 0:
+                    return int(i*self.cell_size) + RADIUS, int(j*self.cell_size) + RADIUS
